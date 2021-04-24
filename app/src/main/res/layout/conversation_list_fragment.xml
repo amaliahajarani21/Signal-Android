@@ -182,12 +182,25 @@
         app:layout_behavior="org.thoughtcrime.securesms.util.views.SlideUpWithSnackbarBehavior">
 
       <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+          android:id="@+id/food_fab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginBottom="20dp"
+          android:contentDescription="@string/conversation_list_fragment__open_cat_fact"
+          android:focusable="true"
+          android:tint="@color/signal_icon_tint_secondary"
+          app:backgroundTint="@color/conversation_list_camera_button_background"
+          app:srcCompat="@drawable/ic_food_foreground" />
+
+      <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
           android:id="@+id/camera_fab"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="20dp"
-          android:layout_marginEnd="16dp"
           android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginBottom="20dp"
           android:contentDescription="@string/conversation_list_fragment__open_camera_description"
           android:focusable="true"
           android:tint="@color/signal_icon_tint_secondary"

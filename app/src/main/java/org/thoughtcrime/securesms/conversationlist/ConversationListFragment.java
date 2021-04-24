@@ -30,6 +30,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +39,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,9 +58,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -111,6 +111,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.recipeFeature.RecipeParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -132,15 +133,17 @@ import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.List;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
 import static android.app.Activity.RESULT_OK;
+import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
@@ -163,6 +166,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private TextView                          searchEmptyState;
   private PulsingFloatingActionButton       fab;
   private PulsingFloatingActionButton       cameraFab;
+  private PulsingFloatingActionButton       foodFab;
   private Stub<SearchToolbar>               searchToolbar;
   private ImageView                         proxyStatus;
   private ImageView                         searchAction;
@@ -200,6 +204,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     list               = view.findViewById(R.id.list);
     fab                = view.findViewById(R.id.fab);
     cameraFab          = view.findViewById(R.id.camera_fab);
+    foodFab             = view.findViewById(R.id.food_fab);
     searchEmptyState   = view.findViewById(R.id.search_no_results);
     searchAction       = view.findViewById(R.id.search_action);
     toolbarShadow      = view.findViewById(R.id.conversation_list_toolbar_shadow);
@@ -217,6 +222,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     fab.show();
     cameraFab.show();
+    foodFab.show();
 
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
@@ -236,6 +242,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                  .onAllGranted(() -> startActivity(MediaSendActivity.buildCameraFirstIntent(requireActivity())))
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
                  .execute();
+    });
+
+    foodFab.setOnClickListener(v -> {
+              RecipeParser recipeData = new RecipeParser();
+              recipeData.getRecipes(getActivity());
+              recipeData.showRecipe(this, view);
+
     });
 
     initializeViewModel();
@@ -286,6 +299,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     fab.stopPulse();
     cameraFab.stopPulse();
+    foodFab.stopPulse();
     EventBus.getDefault().unregister(this);
   }
 
@@ -855,6 +869,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       emptyState.get().setVisibility(View.VISIBLE);
       fab.startPulse(3 * 1000);
       cameraFab.startPulse(3 * 1000);
+      foodFab.startPulse(3 * 1000);
 
       SignalStore.onboarding().setShowNewGroup(true);
       SignalStore.onboarding().setShowInviteFriends(true);
@@ -862,6 +877,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       list.setVisibility(View.VISIBLE);
       fab.stopPulse();
       cameraFab.stopPulse();
+      foodFab.stopPulse();
 
       if (emptyState.resolved()) {
         emptyState.get().setVisibility(View.GONE);

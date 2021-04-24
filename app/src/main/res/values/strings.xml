@@ -3068,6 +3068,9 @@
     <string name="WallpaperCropActivity__set_wallpaper_for_s">Set wallpaper for %s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
     <string name="WallpaperCropActivity__blur_photo">Blur photo</string>
+    <string name="conversation_list_fragment__open_cat_fact" />
+    <string name="This_is_a_popup_window" />
+    <string name="this_is_a_popup_window">This is a popup window.</string>
 
     <!-- EOF -->
 
