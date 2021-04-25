@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
@@ -104,7 +105,16 @@ public class RecipeParser {
 
         TextView nameView = popupView.findViewById(R.id.recipe_name);
         TextView sourceView = popupView.findViewById(R.id.recipe_source);
+        TextView cookTimeView = popupView.findViewById(R.id.recipe_cook_time);
+        TextView servingView = popupView.findViewById(R.id.recipe_serving_amount);
+        TextView ingredientsView = popupView.findViewById(R.id.recipe_ingredients_list);
+        TextView instructionsView = popupView.findViewById(R.id.recipe_instructions_list);
+
         nameView.setText(randomRecipe.getName());
         sourceView.setText(randomRecipe.getSource());
+        cookTimeView.setText("Cook Time: \n" + randomRecipe.getCookTime());
+        servingView.setText("Portion Size: \n" + randomRecipe.getServings());
+        ingredientsView.setText(randomRecipe.getIngredients());
+        instructionsView.setText(randomRecipe.getInstructions());
     }
 }

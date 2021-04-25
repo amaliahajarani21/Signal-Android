@@ -6,13 +6,15 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="310dp"
-        android:layout_height="468dp"
+        android:layout_width="354dp"
+        android:layout_height="557dp"
+        android:background="@color/amber_400"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="42dp">
+        app:layout_constraintVertical_bias="0.506"
+        tools:layout_editor_absoluteX="27dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -21,14 +23,99 @@
                 android:id="@+id/recipe_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="TextView" />
+                android:paddingTop="40dp"
+                android:text="Name"
+                android:textAlignment="center"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/recipe_source"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
-        </LinearLayout>
+                android:paddingTop="70dp"
+                android:text="Source"
+                android:textAlignment="center"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/recipe_cook_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="40dp"
+                    android:paddingTop="120dp"
+                    android:text="Cook Time:"
+                    android:textAlignment="viewStart"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/recipe_serving_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="100dp"
+                    android:paddingTop="120dp"
+                    android:text="Serving Amount:"
+                    android:textAlignment="viewStart"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="200dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <TextView
+                android:id="@+id/recipe_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="170dp"
+                android:text="Ingredients:"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/recipe_ingredients_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="200dp"
+                android:text="Ingredient List:"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/recipe_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="400dp"
+                android:text="Instructions:"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/recipe_instructions_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="430dp"
+                android:paddingBottom="40dp"
+                android:text="Instructions List:"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

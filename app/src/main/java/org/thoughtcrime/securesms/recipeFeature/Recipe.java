@@ -11,6 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static androidx.core.content.ContextCompat.getSystemService;
 
 public class Recipe {
@@ -47,6 +52,17 @@ public class Recipe {
         this.nutritionFacts = new NutritionFacts(cal, carb, fat, fiber, satFat,  sugar, protein);
     }
 
+    private String replace(String string, String replacement) {
+        string = string.replace("[", replacement);
+        string = string.replace("[", replacement);
+        string = string.replace("]", replacement);
+        string = string.replace("\",\"", replacement);
+        string = string.replace("\"", replacement);
+        string = string.replace("/", replacement);
+
+        return string;
+    }
+
     public String getComments() {
         return comments;
     }
@@ -60,10 +76,13 @@ public class Recipe {
     }
 
     public String getInstructions() {
+        this.instructions.replace("\\.\\s ", "\n");
         return instructions;
     }
 
     public String getIngredients() {
+        this.ingredients = ingredients.replace("\\r", "\n");
+        this.ingredients = replace(this.ingredients, "");
         return ingredients;
     }
 
@@ -88,6 +107,7 @@ public class Recipe {
     }
 
     public String getTags() {
+        this.tags = replace(this.tags, " ");
         return tags;
     }
 
