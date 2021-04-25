@@ -26,7 +26,7 @@
                 android:paddingTop="40dp"
                 android:text="Name"
                 android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/recipe_source"
@@ -51,7 +51,7 @@
                     android:paddingTop="120dp"
                     android:text="Cook Time:"
                     android:textAlignment="viewStart"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,7 +68,7 @@
                     android:paddingTop="120dp"
                     android:text="Serving Amount:"
                     android:textAlignment="viewStart"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -84,35 +84,38 @@
                 android:layout_marginLeft="10dp"
                 android:paddingTop="170dp"
                 android:text="Ingredients:"
-                android:textSize="15dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/recipe_ingredients_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:paddingTop="200dp"
                 android:text="Ingredient List:"
-                android:textSize="12dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/recipe_instructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:paddingTop="400dp"
                 android:text="Instructions:"
-                android:textSize="15dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/recipe_instructions_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:paddingTop="430dp"
                 android:paddingBottom="40dp"
                 android:text="Instructions List:"
-                android:textSize="12dp" />
+                android:textSize="14dp" />
 
         </RelativeLayout>
 

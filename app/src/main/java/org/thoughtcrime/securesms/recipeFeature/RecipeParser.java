@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.recipeFeature;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,8 +87,19 @@ public class RecipeParser {
         }
     }
 
-    public void showRecipe(Fragment context, View view) {
-        Recipe randomRecipe = this.recipeData.get(4);
+    private int random() {
+        int min = 0;
+        int max = 45;
+
+        System.out.println("Random value in int from "+min+" to "+max+ ":");
+        int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+
+        return random_int;
+    }
+
+    public void showRecipe(Fragment context, View view, FragmentActivity activity) {
+        int rand_num = random();
+        Recipe randomRecipe = this.recipeData.get(rand_num);
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(context.getContext(), LayoutInflater.class);
@@ -116,5 +128,7 @@ public class RecipeParser {
         servingView.setText("Portion Size: \n" + randomRecipe.getServings());
         ingredientsView.setText(randomRecipe.getIngredients());
         instructionsView.setText(randomRecipe.getInstructions());
+
+        nameView.setTypeface(Typeface.createFromAsset(activity.getAssets(), "Quicksand-VariableFont_wght.ttf"), Typeface.BOLD);
     }
 }

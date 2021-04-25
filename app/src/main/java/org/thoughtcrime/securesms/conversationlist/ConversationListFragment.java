@@ -247,7 +247,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     foodFab.setOnClickListener(v -> {
               RecipeParser recipeData = new RecipeParser();
               recipeData.getRecipes(getActivity());
-              recipeData.showRecipe(this, view);
+              recipeData.showRecipe(this, view, getActivity());
 
     });
 

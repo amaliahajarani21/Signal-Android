@@ -76,7 +76,8 @@ public class Recipe {
     }
 
     public String getInstructions() {
-        this.instructions.replace("\\.\\s ", "\n");
+        this.instructions = this.instructions.replaceAll("\\. ",".\n");
+        this.instructions = this.instructions.replaceAll(": ",":\n");
         return instructions;
     }
 
